@@ -1,0 +1,9 @@
+.nav-link {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-holder{
+    display: flex;
+    justify-content: space-between;
+}

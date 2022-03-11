@@ -1,0 +1,30 @@
+.text-area-width{
+    width: 100%;
+    text-align: center;
+}
+
+.text-input-area{
+    width: 40%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0;
+}
+
+.form-container{
+    width: 97%;
+    display: flex;
+    margin: 0;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.button{
+    margin-top: 20px;
+}
+
+.page-filler{
+    width: 30%;
+    margin: 100px;
+    opacity: 75%;
+    /* background-image: url('https://pro.harman.com/insights/wp-content/uploads/2016/05/concert-outdoor.jpg'); */
+}
