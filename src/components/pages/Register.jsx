@@ -190,11 +190,6 @@ export default function Register() {
                     
                 </Box>
             </div>
-
-        <button onClick={() => {
-            setFirstNameError(!firstNameError)
-            setLastNameError(!lastNameError)
-        }}>Error Tester</button>
             
         </>
     );
