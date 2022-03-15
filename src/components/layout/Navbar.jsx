@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,6 +16,11 @@ export default function Navbar() {
         window.localStorage.removeItem('loginToken')
         setUser(null)
     }
+
+    // useEffect(() => {
+    //     checkUser()
+    // }, [])
+    
     return (
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
@@ -31,7 +36,7 @@ export default function Navbar() {
                 {user? 
                     <Box>
                         <Link className='nav-link' to="/create-event">
-                            <Button color="inherit">Create events</Button>
+                            <Button color="inherit">Create event</Button>
                         </Link>
                         <Link className='nav-link' to="/profile">
                             <Button color="inherit">{user.username}</Button>

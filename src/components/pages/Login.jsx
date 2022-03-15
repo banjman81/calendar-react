@@ -46,7 +46,7 @@ export default function Login() {
             navigate('/')
 
         }catch(e){
-            console.log(e)
+            console.log(e.response)
             for( let key in e.response.data.error){
                 if(key === "email"){
                     setEmailError(true)

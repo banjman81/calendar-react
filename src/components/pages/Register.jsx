@@ -105,7 +105,7 @@ export default function Register() {
                             label="First Name" 
                             variant="standard"  
                             style={{width : "35%"}} 
-                            helperText={firstNameErrorMessage}
+                            helperText={firstNameErrorMessage || " "}
                             onChange={ e => {
                                 setFirstName(e.target.value)
                                 setFirstNameError(false)
