@@ -51,9 +51,11 @@ function App() {
     }
   }
 
-  async function getUser(){
-
-  }
+  const dateFormat = (val) => {
+    const newValue = new Date(val)
+    let date=parseInt(newValue.getMonth()+1) +"/"+newValue.getDate() + "/" +newValue.getFullYear();
+    return date
+};
 
   useEffect(() => {
     checkUser()
@@ -65,7 +67,8 @@ function App() {
     tokenKey,
     checkUser,
     events,
-    setEvents
+    setEvents,
+    dateFormat
   }
   return (
     <div className="App">

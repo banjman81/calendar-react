@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,14 +7,17 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import './navbar.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+    const navigate = useNavigate()
 
     const {user, setUser} = useContext(UserContext)
 
     async function handleSignout(){
         window.localStorage.removeItem('loginToken')
         setUser(null)
+        navigate('/')
     }
 
     // useEffect(() => {
@@ -39,7 +42,8 @@ export default function Navbar() {
                             <Button color="inherit">Create event</Button>
                         </Link>
                         <Link className='nav-link' to="/profile">
-                            <Button color="inherit">{user.username}</Button>
+                            <Button color="inherit">{user.username} {user.events.length > 0 ?<h4 style={{background: "red", width: "20px", borderRadius: "3px", margin: "0"}}>{user.events.length}</h4> : " "}</Button>
+                            
                         </Link>
                         <Button color="inherit" onClick={() => handleSignout()}>Logout</Button>
                     </Box>

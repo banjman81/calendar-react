@@ -48,5 +48,65 @@
 
 .event-link{
     text-decoration: none;
-    color: blue;
+    color: rgb(5, 5, 148);
+}
+
+.created-card{
+    /* width: 300px; */
+    padding: 10px;
+    border: 1px solid #424242;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+
+.created-card h2{
+    white-space: nowrap; 
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.created-card h4{
+    margin: 0;
+}
+
+.created-events-display{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: left;
+}
+.created-event-thumbnail{
+    height: 100%;
+    /* width: 100%; */
+    max-height: 6vw;
+}
+
+.c-button{
+    height: 50px;
+    width: 80px;
+    margin: 0;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: 500;
+    color: white;
+}
+
+.red{
+    background-color: #d62222;
+    border: 1px solid #b61818;
+    box-shadow: 2px 2px 2px #910f0f;
+}
+.red:hover{
+    background-color: #d44e4e;
+    cursor: pointer;
+}
+
+.blue{
+    background-color: #2196f3;
+    border: 1px solid rgb(28, 118, 192);
+    box-shadow: 2px 2px 2px rgba(23, 73, 236, 0.575);
+}
+.blue:hover{
+    background-color: #61b3f7;
 }

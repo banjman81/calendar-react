@@ -11,7 +11,6 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import '../pages.css'
 import { TextareaAutosize } from '@mui/material';
-import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
@@ -50,15 +49,15 @@ function CreateEvent() {
     const [locationError, setLocationError] = useState(false)
 
     const [startDate, setStartDate] = useState(tomorrow)
-    const [startDateError, setStartDateError] = useState(false)
+    // const [startDateError, setStartDateError] = useState(false)
 
     const [endDate, setEndDate] = useState(tomorrow)
-    const [endDateError, setEndDateError] = useState(false)
+    // const [endDateError, setEndDateError] = useState(false)
     
 
     const [capacity, setCapacity] = useState(2)
-    const [capacityError, setCapacityError] = useState(false)
-    const [capacityErrorMessage, setCapacityErrorMessage] = useState("")
+    // const [capacityError, setCapacityError] = useState(false)
+    // const [capacityErrorMessage, setCapacityErrorMessage] = useState("")
 
     const [image, setImage] = useState(null)
 
@@ -348,7 +347,7 @@ function CreateEvent() {
                                         variant="outlined"  
                                         style={{width : "72%"}} 
                                         onChange={ e => {
-                                            setStreetTwo(e.target.value)
+                                            setCapacity(e.target.value)
                                         }}
                                     />
                                 </div>

@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../../App'
 import axios from 'axios'
-import AxiosBackend from '../lib/axiosBackend'
+// import AxiosBackend from '../lib/axiosBackend'
 import { toast } from "react-toastify";
 import noImage from '../images/noImage.png'
 import { useNavigate } from 'react-router-dom'
@@ -36,7 +36,7 @@ function EventDetail() {
 
     useEffect(() => {
         loadEvent()
-    }, [])
+    })
     
     
     
@@ -48,8 +48,12 @@ function EventDetail() {
 
     async function handleAddEvent(event){
         const id = event._id
+        console.log('clicked')
         try{
-            let payload = await AxiosBackend.post(`http://localhost:3001/api/users/add-event/${id}`)
+            let payload = await axios.post(`http://localhost:3001/api/users/add-event/${id}`, {},
+            {
+                headers : {"Authorization" : `Bearer ${localStorage.getItem('loginToken')}`}
+            })
                 console.log(payload)
                 window.location.reload()
         }catch(e){
@@ -60,8 +64,12 @@ function EventDetail() {
 
     async function handleRemoveEvent(event){
         const id = event._id
+        console.log(localStorage.getItem('loginToken'))
         try{
-            let payload = await AxiosBackend.put(`http://localhost:3001/api/users/remove-event/${id}`)
+            let payload = await axios.put(`http://localhost:3001/api/users/remove-event/${id}`, {},
+            {
+                headers : {"Authorization" : `Bearer ${localStorage.getItem('loginToken')}`}
+            })
                 console.log(payload)
                 window.location.reload()
         }catch(e){
@@ -72,8 +80,12 @@ function EventDetail() {
 
     async function handleDeleteEvent(event){
         const id = event._id
+        console.log(localStorage.getItem('loginToken'))
         try{
-            let payload = await AxiosBackend.delete(`http://localhost:3001/api/event/delete-event/${id}`)
+            let payload = await axios.delete(`http://localhost:3001/api/event/delete-event/${id}`,
+            {
+                headers : {"Authorization" : `Bearer ${localStorage.getItem('loginToken')}`}
+            })
             console.log(payload.data)
             navigate('/')
         }catch(e){
@@ -81,7 +93,7 @@ function EventDetail() {
         }
     }
     return (
-        <div>{ event ?
+        <div style={{backgroundImage: event? `url(http://localhost:3001/${event.image})` : ""}} className="bg-container">{ event ?
             <div>
                 <table key={event._id} className="info-table">
                     <tbody>
@@ -140,7 +152,7 @@ function EventDetail() {
                         </tr>
                         <tr>
                             <td colSpan={2}  className="info-box long-des">
-                                <h4>{event.longDescription}</h4>
+                                <p>{event.longDescription}</p>
                             </td>
                         </tr>
                         <tr>
@@ -154,11 +166,11 @@ function EventDetail() {
                         </tr>
                         <tr>
                             <td className='detail-event-button' colSpan={2}>
-                                {
+                                { event.attendees.length-event.capacity !== 0 ?
                                     user ? user.events.filter(element => element._id === event._id).length > 0 ?
                                     <button className='remove-button' onClick={() => handleRemoveEvent(event)}>Remove</button>:
                                     <button className='add-button' onClick={() => {handleAddEvent(event)}}>Add</button>
-                                    : "" 
+                                    : "" : ""
                                 }
                             </td>
                         </tr>
