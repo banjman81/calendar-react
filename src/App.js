@@ -17,6 +17,7 @@ import CreateEvent from './components/pages/protectedPages/CreateEvent';
 import Navbar from './components/layout/Navbar';
 import Profile from './components/pages/protectedPages/Profile';
 import EventDetail from './components/pages/EventDetail';
+import UploadPage from './components/pages/Upload';
 
 export const UserContext = React.createContext({})
 
@@ -91,6 +92,7 @@ function App() {
           <Route path="/create-event" element={<PrivateRoute><CreateEvent/></PrivateRoute>}></Route>
           <Route path="/profile" element={<PrivateRoute><Profile/></PrivateRoute>}></Route>
           <Route path="/event/:id" element={<EventDetail />}/>
+          <Route path="/event/upload" element={<UploadPage />}/>
         </Routes>
         </UserContext.Provider>
       </BrowserRouter>

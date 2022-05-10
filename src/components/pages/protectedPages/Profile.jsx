@@ -59,8 +59,8 @@ function Profile() {
             {
                 headers : {"Authorization" : `Bearer ${localStorage.getItem('loginToken')}`}
             })
-            console.log(payload.data)
-            // navigate('/')
+            // console.log(payload.data)
+            window.location.reload()
         }catch(e){
             notifyFailed(e.response.data.error)
         }
@@ -87,7 +87,7 @@ function Profile() {
                                     {
                                         event.image === "uploads/undefined" ? 
                                         <img className='event-thumbnail' src={noImage} alt="" /> :
-                                        <img className='event-thumbnail' src={`http://localhost:3001/${event.image}` } alt='' />
+                                        <img className='event-thumbnail' src={event.image} alt='' />
                                     }
                                     <button className='remove-button'  style={{marginTop: "20px"}} onClick={() => handleRemoveEvent(event)}>Remove</button>
                                     </div>

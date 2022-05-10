@@ -65,21 +65,16 @@ function Home() {
     
     return (
         <>
-        {events ?
+        {user?.username ? <> {events ?
             <div>
                 {
                     events.map(event => {
-                        // let added = false
-                        // const filteredEvents = user?.events.filter(item => item._id === event._id)
-                        // if(filteredEvents.length > 0){
-                        //     added = true
-                        // }
                         return (<div key={event._id} className="event-card">
                             <Link to={`/event/${event._id}`} className="flex">
                                 {
-                                    event.image === "uploads/undefined" ? 
+                                    event.image === "" || event.image === null ? 
                                     <img className='event-thumbnail' src={noImage} alt="" /> :
-                                    <img className='event-thumbnail' src={`http://localhost:3001/${event.image}` } alt='' />
+                                    <img className='event-thumbnail' src={event.image} alt='' />
                                 }
                                 <div>
                                     
@@ -120,7 +115,7 @@ function Home() {
                     })
                 }
             </div> : " Loading..."
-        }
+        } </> : <h1>Welcome to Event lister. Please login to view avalible events.</h1>}
         </>
     )
 }

@@ -80,7 +80,7 @@ function EventDetail() {
 
     async function handleDeleteEvent(event){
         const id = event._id
-        console.log(localStorage.getItem('loginToken'))
+        // console.log(localStorage.getItem('loginToken'))
         try{
             let payload = await axios.delete(`http://localhost:3001/api/event/delete-event/${id}`,
             {
@@ -93,7 +93,7 @@ function EventDetail() {
         }
     }
     return (
-        <div style={{backgroundImage: event? `url(http://localhost:3001/${event.image})` : ""}} className="bg-container">{ event ?
+        <div style={{backgroundImage: event? `url(${event.image})` : ""}} className="bg-container">{ event ?
             <div>
                 <table key={event._id} className="info-table">
                     <tbody>
@@ -160,7 +160,7 @@ function EventDetail() {
                                 {
                                     event.image === "" ? 
                                     <img className='event-image' src={noImage} alt="" /> :
-                                    <img className='event-image' src={`http://localhost:3001/${event.image}` } alt='' />
+                                    <img className='event-image' src={event.image} alt='' />
                                 }
                             </td>
                         </tr>

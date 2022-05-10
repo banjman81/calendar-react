@@ -163,12 +163,26 @@
     border-radius: 5px;
     box-shadow: 3px 3px 3px #41525fa8;
 }
+.info-table tr{
+    overflow-wrap: normal;
+}
 
-.long-des p{
-    text-align: left;
-    /* width: 75%; */
-    margin: 0 auto;
-    font-size: 20px;
+.long-des p {
+    padding: 1em;
+    font-size: calc(0.6vw + 0.6em);
+    direction: ltr;
+    width: 70vw;
+    margin:auto;
+    text-align:justify;
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 .wide{
     width: 500px;

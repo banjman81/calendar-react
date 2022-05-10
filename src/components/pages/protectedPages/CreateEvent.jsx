@@ -49,15 +49,9 @@ function CreateEvent() {
     const [locationError, setLocationError] = useState(false)
 
     const [startDate, setStartDate] = useState(tomorrow)
-    // const [startDateError, setStartDateError] = useState(false)
-
     const [endDate, setEndDate] = useState(tomorrow)
-    // const [endDateError, setEndDateError] = useState(false)
-    
 
     const [capacity, setCapacity] = useState(2)
-    // const [capacityError, setCapacityError] = useState(false)
-    // const [capacityErrorMessage, setCapacityErrorMessage] = useState("")
 
     const [image, setImage] = useState(null)
 
@@ -65,8 +59,6 @@ function CreateEvent() {
     const Input = styled('input')({
         display: 'none',
     });
-
-    
     
 
     const imageSelectHandler = (e) => {
@@ -87,24 +79,29 @@ function CreateEvent() {
     };
 
     async function handleCreate(){
-        console.log(remote, "remote")
+        let imgurl = ""
+        if(image){
+            const file = image.selectedFile
+            const {url} = await fetch('http://localhost:3001/api/event/s3url').then(res => res.json())
+
+            await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type" : 'multipart/form-data'
+                },
+                body: file
+            })
+            
+            imgurl = url.split('?')[0]
+        }
+        
+
         if(remote){
             setLocation("Remote")
         }else{
             setLocation(`${streetOne} ${streetTwo}, ${city}, ${state} ${zipCode}`)
         }
         try{
-            const fd = new FormData()
-            if(image?.selectedFile){
-                console.log(image)
-                fd.append('image', image?.selectedFile, image?.selectedFile?.name)
-                let upload = await axios.post('http://localhost:3001/api/event/upload', fd,
-                {
-                    headers : {"Authorization" : `Bearer ${localStorage.getItem('loginToken')}`}
-                } )
-                console.log(upload)
-            }
-            
             let payload = await axios.post('http://localhost:3001/api/event/create-event', 
             {
                 title,
@@ -114,16 +111,16 @@ function CreateEvent() {
                 location,
                 startDate,
                 endDate,
-                image: "uploads/" + image?.selectedFile?.name || "",
+                image: imgurl,
                 capacity: capacity.toString(),
             },
             {
                 headers : {"Authorization" : `Bearer ${localStorage.getItem('loginToken')}`}
-            },fd,
+            }
             )
             console.log( payload)
             navigate('/')
-
+            
 
         }catch(e){
             console.log(e.response)
@@ -148,6 +145,7 @@ function CreateEvent() {
                 }
             }
         }
+        
     }
 
     return (
